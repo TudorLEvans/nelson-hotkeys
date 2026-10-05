@@ -3,7 +3,7 @@ package render
 import (
 	"testing"
 
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 func TestLayoutSizeGate(t *testing.T) {

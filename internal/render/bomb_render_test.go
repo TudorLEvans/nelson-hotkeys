@@ -3,7 +3,7 @@ package render
 import (
 	"testing"
 
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 // TestBombBracketMovesWithItsLetters is the regression test for a bug that only

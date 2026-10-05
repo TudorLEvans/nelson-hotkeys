@@ -56,7 +56,7 @@ func New(volume float64) *Player {
 	if bin == "" {
 		return nil
 	}
-	dir, err := os.MkdirTemp("", "keyboardwarrior-audio")
+	dir, err := os.MkdirTemp("", "nelson-audio")
 	if err != nil {
 		return nil
 	}

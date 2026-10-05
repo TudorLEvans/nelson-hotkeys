@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/gdamore/tcell/v2"
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 func menuScreen(t *testing.T, w, h int) (tcell.SimulationScreen, Layout) {

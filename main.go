@@ -1,4 +1,4 @@
-// KEYBOARD WARRIOR. Words fall, you type them, letters explode.
+// NELSON: HERO OF THE KEYS. Words fall, you type them, letters explode.
 //
 // There is no lock and no selected word: any keypress takes a letter off
 // whichever word wants it and is furthest down the screen. See SPEC.md 2.3.
@@ -13,12 +13,12 @@ import (
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/uniseg"
 
-	"keyboardwarrior/internal/audio"
-	"keyboardwarrior/internal/engine"
-	"keyboardwarrior/internal/render"
-	"keyboardwarrior/internal/replay"
-	"keyboardwarrior/internal/stats"
-	"keyboardwarrior/internal/words"
+	"nelson/internal/audio"
+	"nelson/internal/engine"
+	"nelson/internal/render"
+	"nelson/internal/replay"
+	"nelson/internal/stats"
+	"nelson/internal/words"
 )
 
 const (
@@ -81,7 +81,7 @@ func main() {
 	})
 
 	if err := run(o); err != nil {
-		fmt.Fprintln(os.Stderr, "keyboardwarrior:", err)
+		fmt.Fprintln(os.Stderr, "nelson:", err)
 		os.Exit(1)
 	}
 }
@@ -659,9 +659,9 @@ func run(o opts) error {
 		scr.Fini()
 		if g := gameRef; g != nil && g.rec != nil {
 			if err := g.rec.Save(o.record); err != nil {
-				fmt.Fprintln(os.Stderr, "keyboardwarrior: saving replay:", err)
+				fmt.Fprintln(os.Stderr, "nelson: saving replay:", err)
 			} else {
-				fmt.Fprintln(os.Stderr, "keyboardwarrior: replay written to", o.record)
+				fmt.Fprintln(os.Stderr, "nelson: replay written to", o.record)
 			}
 		}
 		if r := recover(); r != nil {
@@ -701,7 +701,7 @@ func run(o opts) error {
 		g.applyAudio(wantSound, wantMusic)
 		if g.audio == nil {
 			fmt.Fprintln(os.Stderr,
-				"keyboardwarrior: no afplay, paplay or aplay found; running silent")
+				"nelson: no afplay, paplay or aplay found; running silent")
 		}
 	}
 	defer g.audio.Close()

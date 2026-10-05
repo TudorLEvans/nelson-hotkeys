@@ -1,4 +1,4 @@
-# KEYBOARD WARRIOR
+# NELSON: HERO OF THE KEYS
 
 A terminal typing game. Words fall from the top of the screen in big block capitals. You destroy a word by typing it, letter by letter, each one exploding as it goes. Miss a word and it hits the floor and costs a life. Three lives, then it is over.
 
@@ -330,7 +330,7 @@ The game currently drops the player straight into a falling word with no explana
 Shown on launch, in the same bordered playfield as the game so nothing jumps when it starts.
 
 ```
-   ▟▙          KEYBOARD WARRIOR          <- title, TierHuge
+   ▟▙          NELSON                    <- title, TierHuge
   ▟██▙
    ██           ▸ PLAY
    ██             HOW TO PLAY
@@ -577,7 +577,7 @@ Ideas that use mechanics already in the game rather than bolting on new ones. No
 
 The word list decides more of the fun than any mechanic in this document, and a random dictionary dump wastes it.
 
-**Theme it.** The game is called KEYBOARD WARRIOR. Ship the internet-argument pack: ACTUALLY, SOURCE, CITATION, STRAWMAN, PEDANT, DOWNVOTE, TOUCHE, RATIO, CIRCULAR, ANECDOTE, WHATABOUT, ERRATUM. The joke does the work of a lot of art, and it makes the game specifically this game rather than generically a typing game. Packs are plain text files, one per line, selectable with `--words NAME`.
+**Theme it.** The game was first called KEYBOARD WARRIOR, and the pack keeps that joke. Ship the internet-argument pack: ACTUALLY, SOURCE, CITATION, STRAWMAN, PEDANT, DOWNVOTE, TOUCHE, RATIO, CIRCULAR, ANECDOTE, WHATABOUT, ERRATUM. The joke does the work of a lot of art, and it makes the game specifically this game rather than generically a typing game. Packs are plain text files, one per line, selectable with `--words NAME`.
 
 **Weight by typing difficulty.** *(done)* Each word is scored on same-finger repeats, same-hand runs and reaches off the home row, and selection biases toward awkward words as the run goes on.
 
@@ -620,7 +620,7 @@ Rust's remaining wins are 1.5 MB of disk and 0.2 ms of frame time. Neither is wo
 ### 8.2 Package layout
 
 ```
-keyboardwarrior/
+nelson/
   go.mod
   tuning.conf                 # every tunable, hot-reloaded
   main.go                     # flags, terminal setup, panic recovery, teardown
@@ -730,7 +730,7 @@ Still to add: `--replay FILE`.
 
 - **M5 (done)** chain legibility and chain rewards: loaded words marked, the window drawn with its current and next value, COMBO renamed to STREAK, tiers extended to x20, and the four survival-paying milestones.
 - **M6 (done)** the menu, the five-page guide, the "England expects" ready gate and the first-run hint. Escape now goes back rather than out: to the menu from a run, out only from the menu itself.
-- **M7 (done)** personal bests in `~/.keyboardwarrior/stats.json`, shown on the menu and called out on the score screen. The call-out is one line, `NEW HIGH SCORE`, and only for the score: it used to list every best a run beat - time, chain, streak - which buried the one that matters among ones that do not. The rest are still tracked and still on the stats screen. The menu's board carries rank, score and time; the date each run was set was dropped, since when a run happened says nothing about where it places. Written atomically; a missing or corrupt file is never fatal. Runs made with `--god`, `--speed`, `--level` or `--word` are unranked and never touch it. Closes the "one more go" loop: a score with nothing to beat is just a number.
+- **M7 (done)** personal bests in `~/.nelson/stats.json`, shown on the menu and called out on the score screen. The call-out is one line, `NEW HIGH SCORE`, and only for the score: it used to list every best a run beat - time, chain, streak - which buried the one that matters among ones that do not. The rest are still tracked and still on the stats screen. The menu's board carries rank, score and time; the date each run was set was dropped, since when a run happened says nothing about where it places. Written atomically; a missing or corrupt file is never fatal. Runs made with `--god`, `--speed`, `--level` or `--word` are unranked and never touch it. Closes the "one more go" loop: a score with nothing to beat is just a number.
 - **M8 (done)** typing-difficulty weighting, `--record` and `--replay`, the level-up banner, a pulse on words about to land, and a flash on both words when one kicks another.
 - **M9 (done)** the intro sequence in five beats, Johnson in his own band above the field, the Trafalgar defeat sequence. The ready gate landed early with M6. The band was later removed and its rows returned to the playfield; Johnson is a portrait plate in the intro now, see 3.3.
 - **M10 (done)** audio: five tunes and ten effects synthesised from note data, played through `afplay`, `paplay` or `aplay`, on by default and switchable from the menu or with `-sound=false` and `-music=false`. A machine with no player runs silent rather than failing.
@@ -745,7 +745,7 @@ Five targets, all built on one machine in about 13 seconds:
 ```sh
 for t in darwin/arm64 darwin/amd64 linux/amd64 linux/arm64 windows/amd64; do
   CGO_ENABLED=0 GOOS=${t%%/*} GOARCH=${t##*/} \
-    go build -ldflags="-s -w" -o dist/keyboardwarrior-${t%%/*}-${t##*/}
+    go build -ldflags="-s -w" -o dist/nelson-${t%%/*}-${t##*/}
 done
 ```
 
@@ -756,7 +756,7 @@ Use `goreleaser` for the actual releases. One config file builds every target, w
 **The macOS reality, stated plainly.** An unsigned binary downloaded from a browser is quarantined by Gatekeeper and refuses to run, with a message that explains nothing. Three ways out, in preference order:
 
 1. A Homebrew tap. `brew install` does not quarantine, it is one command, and it is what people expect from a terminal tool. `goreleaser` generates the formula.
-2. `go install github.com/.../keyboardwarrior@latest`, for anyone with Go.
-3. A direct download plus `xattr -d com.apple.quarantine ./keyboardwarrior` in the README.
+2. `go install github.com/.../nelson@latest`, for anyone with Go.
+3. A direct download plus `xattr -d com.apple.quarantine ./nelson` in the README.
 
 Signing and notarising needs an Apple Developer ID at 99 USD a year. Worth it only if this goes to strangers who will not use Homebrew. Linux and Windows have no equivalent problem.

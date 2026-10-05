@@ -59,7 +59,7 @@ func (r *Recording) At(frame int) []rune { return r.Keys[frame] }
 // actually send.
 func (r *Recording) Write(w io.Writer) error {
 	bw := bufio.NewWriter(w)
-	fmt.Fprintf(bw, "keyboardwarrior-replay %d\n", r.Version)
+	fmt.Fprintf(bw, "nelson-replay %d\n", r.Version)
 	fmt.Fprintf(bw, "seed %d\n", r.Seed)
 	fmt.Fprintf(bw, "font %s\n", r.Font)
 	fmt.Fprintf(bw, "pack %s\n", r.Pack)
@@ -108,7 +108,7 @@ func Load(path string) (*Recording, error) {
 		}
 		head, rest, _ := strings.Cut(text, " ")
 		switch head {
-		case "keyboardwarrior-replay":
+		case "nelson-replay", "keyboardwarrior-replay": // the latter from before the rename
 			v, err := strconv.Atoi(rest)
 			if err != nil {
 				return nil, fmt.Errorf("%s:%d: bad version %q", path, line, rest)

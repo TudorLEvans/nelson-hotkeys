@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gdamore/tcell/v2"
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 var (

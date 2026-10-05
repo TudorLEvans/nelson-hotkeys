@@ -9,11 +9,11 @@ import (
 	"time"
 
 	"github.com/gdamore/tcell/v2"
-	"keyboardwarrior/internal/engine"
-	"keyboardwarrior/internal/render"
-	"keyboardwarrior/internal/replay"
-	"keyboardwarrior/internal/stats"
-	"keyboardwarrior/internal/words"
+	"nelson/internal/engine"
+	"nelson/internal/render"
+	"nelson/internal/replay"
+	"nelson/internal/stats"
+	"nelson/internal/words"
 )
 
 // useBlocks pins the drawing style so a change of default does not churn every

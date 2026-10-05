@@ -98,6 +98,15 @@ func Path() string {
 	if err != nil {
 		return ""
 	}
+	return filepath.Join(home, ".nelson", "stats.json")
+}
+
+// legacyPath is where bests were kept before the rename.
+func legacyPath() string {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return ""
+	}
 	return filepath.Join(home, ".keyboardwarrior", "stats.json")
 }
 
@@ -121,7 +130,11 @@ func Load() *Stats {
 	}
 	data, err := os.ReadFile(path)
 	if err != nil {
-		return s
+		// The game was called Keyboard Warrior and kept its bests in
+		// ~/.keyboardwarrior. Read from there until the first save writes the new path.
+		if data, err = os.ReadFile(legacyPath()); err != nil {
+			return s
+		}
 	}
 	var loaded Stats
 	if err := json.Unmarshal(data, &loaded); err != nil {

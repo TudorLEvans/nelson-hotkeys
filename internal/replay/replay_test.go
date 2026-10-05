@@ -48,7 +48,7 @@ func TestFormatIsReadable(t *testing.T) {
 		t.Fatal(err)
 	}
 	text := buf.String()
-	for _, want := range []string{"keyboardwarrior-replay 1", "seed 7", "font braille", "3 A"} {
+	for _, want := range []string{"nelson-replay 1", "seed 7", "font braille", "3 A"} {
 		if !strings.Contains(text, want) {
 			t.Errorf("the file does not contain %q:\n%s", want, text)
 		}
@@ -80,7 +80,7 @@ func TestFramesAreOrdered(t *testing.T) {
 // phantom.
 func TestVersionMismatchRefuses(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "old.replay")
-	body := "keyboardwarrior-replay 99\nseed 1\nfont blocks\npack english\nframes 0\n"
+	body := "nelson-replay 99\nseed 1\nfont blocks\npack english\nframes 0\n"
 	if err := os.WriteFile(path, []byte(body), 0o644); err != nil {
 		t.Fatal(err)
 	}
@@ -98,8 +98,8 @@ func TestGarbageIsRejected(t *testing.T) {
 	for name, body := range map[string]string{
 		"empty.replay":  "",
 		"prose.replay":  "this is not a replay\n",
-		"badseed.repl":  "keyboardwarrior-replay 1\nseed banana\n",
-		"badframe.repl": "keyboardwarrior-replay 1\nseed 1\nwibble A\n",
+		"badseed.repl":  "nelson-replay 1\nseed banana\n",
+		"badframe.repl": "nelson-replay 1\nseed 1\nwibble A\n",
 	} {
 		path := filepath.Join(dir, name)
 		if err := os.WriteFile(path, []byte(body), 0o644); err != nil {

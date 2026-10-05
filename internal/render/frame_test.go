@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/gdamore/tcell/v2"
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 var update = flag.Bool("update", false, "rewrite golden files")

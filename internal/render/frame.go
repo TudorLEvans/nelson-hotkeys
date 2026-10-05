@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/gdamore/tcell/v2"
-	"keyboardwarrior/internal/engine"
-	"keyboardwarrior/internal/words"
+	"nelson/internal/engine"
+	"nelson/internal/words"
 )
 
 // Lives are drawn with these rather than with the glyph blocks, so glyph ink

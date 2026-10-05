@@ -1,6 +1,7 @@
 package stats
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -76,7 +77,7 @@ func TestRoundTrip(t *testing.T) {
 // point: nothing here may ever stop somebody playing.
 func TestCorruptFileIsNotFatal(t *testing.T) {
 	home := withHome(t)
-	path := filepath.Join(home, ".keyboardwarrior", "stats.json")
+	path := filepath.Join(home, ".nelson", "stats.json")
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		t.Fatal(err)
 	}
@@ -110,7 +111,7 @@ func TestMissingFileIsNotFatal(t *testing.T) {
 // one run and losing every best.
 func TestSaveIsAtomic(t *testing.T) {
 	home := withHome(t)
-	dir := filepath.Join(home, ".keyboardwarrior")
+	dir := filepath.Join(home, ".nelson")
 
 	first := &Stats{Daily: map[string]int{}}
 	first.Record(Run{Score: 500})
@@ -229,5 +230,26 @@ func TestWPMIsGone(t *testing.T) {
 		if strings.Contains(strings.ToUpper(row[0]), "WPM") {
 			t.Errorf("the stats screen still shows %q", row[0])
 		}
+	}
+}
+
+// TestLegacyPathIsRead: bests saved under the old name must survive the rename.
+func TestLegacyPathIsRead(t *testing.T) {
+	home := withHome(t)
+	old := &Stats{Daily: map[string]int{}}
+	old.Record(Run{Score: 700})
+	data, err := json.Marshal(old)
+	if err != nil {
+		t.Fatal(err)
+	}
+	path := filepath.Join(home, ".keyboardwarrior", "stats.json")
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(path, data, 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if got := Load().BestScore(); got != 700 {
+		t.Errorf("best score from the legacy file = %d, want 700", got)
 	}
 }

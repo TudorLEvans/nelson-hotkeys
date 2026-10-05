@@ -4,7 +4,7 @@ import (
 	"math"
 
 	"github.com/gdamore/tcell/v2"
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 // Effects holds the purely visual state: particles, flashes and shake. It lives

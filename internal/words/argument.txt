@@ -1,5 +1,5 @@
-# The internet-argument pack. The game is called KEYBOARD WARRIOR; feeding it a
-# dictionary would waste the joke.
+# The internet-argument pack, from when the game was called KEYBOARD WARRIOR.
+# Feeding it a dictionary would waste the joke.
 #
 # Uppercase A-Z only, one word per line, 3 to 12 letters. The spawner picks by
 # length band, short words early and long ones later, so the list needs plenty at

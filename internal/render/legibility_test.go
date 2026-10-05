@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 // cellsOf renders one character to the cell grid the player actually sees.

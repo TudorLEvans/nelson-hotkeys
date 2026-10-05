@@ -1,6 +1,6 @@
 package render
 
-import "keyboardwarrior/internal/engine"
+import "nelson/internal/engine"
 
 // Layout is the resolved geometry for one terminal size. The playfield is
 // clamped to a maximum and centred, so difficulty is comparable across

@@ -3,7 +3,7 @@ package render
 import (
 	"strings"
 
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 // The block characters the game draws with. All are Unicode East Asian

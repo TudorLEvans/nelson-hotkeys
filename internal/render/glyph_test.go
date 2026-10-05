@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/rivo/uniseg"
-	"keyboardwarrior/internal/engine"
+	"nelson/internal/engine"
 )
 
 // TestGlyphWidths is the regression test for the East Asian ambiguous width
